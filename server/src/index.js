@@ -14,7 +14,7 @@ seedModels();
 // continuous monitoring
 const INTERVAL = Number(process.env.HEALTH_CHECK_INTERVAL_MS || 300);
 // setInterval(() => { probeAll().catch(() => {}); }, INTERVAL);
-// console.log("server booted, interval =", INTERVAL);
+console.log("server booted, interval =", INTERVAL);
 
 setInterval(() => {
   probeAll()

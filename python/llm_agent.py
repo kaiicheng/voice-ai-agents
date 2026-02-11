@@ -22,6 +22,11 @@ def probe_openai(model, prompt):
         time.sleep(0.2)
         return ok("openai", model, 200, {"stub": True})
 
+    # if not key:
+    #     if model == "gpt-4o-mini":
+    #         return err("openai", model, 200, "forced fail for demo")
+    #     return ok("openai", model, 200, {"stub": True})
+
     url = "https://api.openai.com/v1/chat/completions"
     headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
     payload = {"model": model, "messages":[{"role":"user","content":prompt}], "max_tokens": 10, "temperature": 0}
