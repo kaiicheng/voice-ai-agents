@@ -11,8 +11,17 @@ app.use(express.json());
 
 seedModels();
 
-const INTERVAL = Number(process.env.HEALTH_CHECK_INTERVAL_MS || 30000);
-setInterval(() => { probeAll().catch(() => {}); }, INTERVAL);
+// continuous monitoring
+const INTERVAL = Number(process.env.HEALTH_CHECK_INTERVAL_MS || 300);
+// setInterval(() => { probeAll().catch(() => {}); }, INTERVAL);
+// console.log("server booted, interval =", INTERVAL);
+
+setInterval(() => {
+  probeAll()
+    .then((results) => console.log("periodic probe:", results))
+    .catch((err) => console.error("periodic probe failed:", err));
+}, INTERVAL);
+
 probeAll().catch(() => {});
 
 // health overview
