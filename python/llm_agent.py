@@ -123,16 +123,8 @@ def main():
     if args.cmd == "probe":
         print(json.dumps(probe(args.provider, args.model, args.prompt)))
     else:
-        # out = probe(args.provider, args.model, args.prompt)
-        # out["kind"] = "initiateInterview"
-        # print(json.dumps(out))
-
-
-        # Step 2-2: parse config JSON and call initiateInterview(config,...)
+        # parse config JSON and call initiateInterview(config,...)
         try:
-            # simulation_config = json.loads(args.config) if args.config else {}
-            # print("DEBUG config repr:", repr(args.config))
-            # print("DEBUG config repr:", repr(args.config), file=sys.stderr)
             simulation_config = parse_config(args.config)
             
             if not isinstance(simulation_config, dict):

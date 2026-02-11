@@ -23,3 +23,7 @@ export function seedModels() {
     });
   }
 }
+
+export function clearFallbacks() {
+  store.fallbacks.length = 0; // clear array
+}

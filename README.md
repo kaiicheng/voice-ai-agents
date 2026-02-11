@@ -138,7 +138,7 @@ curl.exe http://localhost:3000/fallbacks
 ### Step 1 — probe health
 
 ```powershell
-irm -Method POST http://localhost:3000/health/probe
+irm -Method POST http://localhost:3000/health/probe | Format-List *
 ```
 
 ### Case A — no fallbacks provided (AUTO secondary selection)
@@ -190,6 +190,17 @@ Expected:
 
 ```powershell
 curl.exe http://localhost:3000/fallbacks
+```
+
+### Clear fallback logs
+
+```powershell
+irm -Method DELETE http://localhost:3000/fallbacks | ConvertTo-Json
+```
+
+and check again
+```powershell
+irm -Method POST http://localhost:3000/health/probe | Format-List *
 ```
 
 </details>
